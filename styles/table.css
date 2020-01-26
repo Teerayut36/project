@@ -1,0 +1,79 @@
+/*********** Global Section **********/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Athiti', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+
+/*********** Navbar Section Start ***********/
+
+.navbar-inverse {
+    background-image: linear-gradient( to right top, rgba(22, 21, 22, 0.87),rgba(137, 136, 138, 0.884));
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    font-size: 15px;
+   
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+    font-size: 30px;
+}
+
+
+
+/************ Navbar Section End *************/
+
+
+/************ Header Section Start ************/
+.header {
+    height:100vh;
+    background-color: rgb(211, 208, 208);
+    
+    
+}
+#about {
+    padding-top: 70px;
+    padding-bottom: 40px;
+    
+   
+}
+.card{   
+    width: 700pt;
+    padding: 30px;
+    margin: auto;
+    background-color: rgb(209, 209, 209);
+}
+#table{
+    
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+}
+      
+ #table td, #table  th {
+        border: 1px solid #ddd;
+        padding: 8px;
+}
+      
+#table  tr:nth-child{background-color: #f2f2f2;}
+      
+#table  tr:hover {background-color: #ddd;}
+      
+#table  th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(113, 116, 114);
+        color: white;
+}

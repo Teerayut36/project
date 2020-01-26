@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>Web logout</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/signup.css">
+</head>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
+        authDomain: "project-8cea8.firebaseapp.com",
+        databaseURL: "https://project-8cea8.firebaseio.com",
+        projectId: "project-8cea8",
+        storageBucket: "project-8cea8.appspot.com",
+        messagingSenderId: "915660167642",
+        appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
+        measurementId: "G-MDK8FVSGYM"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
+
+<body>
+
+    <div class="form">
+
+        <button onclick="logout()">logout to Account</button>
+    </div>
+
+
+</body>
+<script>
+
+
+    function logout() {
+        firebase.auth().signOut().then(function () {
+
+            window.location.href = 'index.html';
+
+            // Sign-out successful.
+        }).catch(function (error) {
+            // An error happened.
+        });
+    }
+
+
+</script>
+
+</html>

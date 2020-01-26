@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="test.css">
+<head>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+
+   
+
+<body>
+    <div class="page-content">
+        <img src="images/zowie.png" />
+    </div>
+
+    <div id="product"></div>
+    <script id="product_template" type="text/template"> 
+ <ons-row>
+        <% product.forEach(function(product){
+          var products = product.data();
+          %>
+<ons-col width="49.99%" >
+  <ons-card  style="background:#DDDDDD;" style ="width=100% height=100px;"  onclick ="detail('<%- products.pid %>')" >
+        <img class="" src="<%= products.photo %>" width="100%" height="100px;"><br>
+<%= products.Category %><br>
+<%= products.title %><br>
+฿<%= products.price %>
+  </ons-card></ons-col>
+
+<%});%> 
+ </ons-row>
+</body>
+</html>

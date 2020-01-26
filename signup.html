@@ -1,0 +1,97 @@
+<html>
+
+<head>
+  <title>Web login</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/signup.css">
+</head>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
+    authDomain: "project-8cea8.firebaseapp.com",
+    databaseURL: "https://project-8cea8.firebaseio.com",
+    projectId: "project-8cea8",
+    storageBucket: "project-8cea8.appspot.com",
+    messagingSenderId: "915660167642",
+    appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
+    measurementId: "G-MDK8FVSGYM"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+</script>
+
+<body>
+
+  <div class="form">
+
+    <h3> Web login </h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button onclick="login()">Login to Account</button>
+    <p class="message">Or,login with </p>
+    <p></p><button onclick="google()">Google to Account</button></p>
+  </div>
+
+
+
+
+
+
+
+
+</body>
+<script>
+
+
+  function google() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
+
+  function login() {
+
+    var userEmail = document.getElementById("email_field").value;
+    var userPass = document.getElementById("password_field").value;
+
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      window.alert("Error : " + errorMessage);
+
+      // ...
+    });
+
+  };
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // User is signed in.
+      // Send user to home.html
+      window.location.href = 'index2.html';
+    }
+  });
+</script>
+
+</html>

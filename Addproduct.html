@@ -29,36 +29,36 @@
                 <h4>Add Data</h4>
                 <form>
                     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Segments</th>
-                                <th>
-                                    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="♥">account_box
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
+                       
                         <tbody>
                             <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Title</td>
+                                <td class="mdl-data-table__cell--non-numeric">neme</td>
                                 <td>
                                     <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="title" id="title">
-                                        <label class="mdl-textfield__label" for="title">Title...</label>
+                                        <input class="mdl-textfield__input" type="title" id="name">
+                                        <label class="mdl-textfield__label" for="title">name...</label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Content</td>
+                                <td class="mdl-data-table__cell--non-numeric">price</td>
                                 <td>
                                     <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" rows="5" id="content"></input>
-                                        <label class="mdl-textfield__label" for="content">Content...</label>
+                                        <input class="mdl-textfield__input" type="text" id="price"></input>
+                                        <label class="mdl-textfield__label" for="content">price...</label>
                                     </div>
 
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Image</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input type="file" id="fileButton" />
+                                    </div>
+                                </td>
 
+                            </tr>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">
                                     <button id="add-data"
@@ -71,19 +71,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">
-                                    Console:
-                                </td>
-                                <td>
-                                    <div class="panel panel-danger" id="errors" style='display: none;'>
-                                    </div>
-                                    <div class="panel panel-primary" id="success" style='display: none;'>
-                                    </div>
-                                    <div class="col-xs-2"></div>
-                                    <div class="row"></div>
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </form>
@@ -91,16 +79,19 @@
 
 
                 <!--Insert JS-->
-
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
                 <!-- The core Firebase JS SDK is always required and must be listed first -->
-                <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
 
                 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-                <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
-                <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
+               
 
-
+                
                 <script>
                     // Your web app's Firebase configuration
                     var firebaseConfig = {
@@ -113,29 +104,42 @@
                         appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
                         measurementId: "G-MDK8FVSGYM"
                     };
-                    // Initialize Firebase
+
 
                     // Initialize Firebase
                     var thumbnail;
 
                     firebase.initializeApp(firebaseConfig);
-                    firebase.analytics();
-                    var db = firebase.firestore();
+                   
+
+                    var fileButton = document.getElementById("fileButton");
+                    fileButton.addEventListener('change', function (e) {
+                        var file = e.target.files[0];
+                       // put img
+                        var storageRef = firebase.storage().ref(file.name);
+                        storageRef.put(file);
+                        thumbnail = "https://firebasestorage.googleapis.com/v0/b/" + config["storageBucket"] + "/o/" + file.name + "?alt=media";
+                    });
+
+                    document.getElementById("add-data").onclick = function (e) {
+
+                        var name = document.getElementById('name').value;
+                        var price = document.getElementById('price').value;
+                        var rootRef = firebase.database().ref();
+                        var storesRef = rootRef.child('app/data/');
+                        var newStoreRef = storesRef.push();
+                        newStoreRef.set({
+                           name: name,
+                            price: price,
+                            thumbnail: thumbnail
+                        });
+                       
+                    alert(Success);
+                    console.log("Success" + firebaseRef.snapshot.value());
+                        // window.location.href="container.html";
 
 
-                    /*** function saveData() {
-                         db.collection("app").add({
-                             title: $("#title").val(),
-                             content: $("#content").val(),
- 
-                         })**///
-                    db.collection("users").add({
-                        first: "Ada",
-                        last: "Lovelace",
-                        born: 1815
-                    })
-                        
-
+                    }
 
                 </script>
 

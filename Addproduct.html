@@ -126,7 +126,7 @@
                         var name = document.getElementById('name').value;
                         var price = document.getElementById('price').value;
                         var rootRef = firebase.database().ref();
-                        var storesRef = rootRef.child('app/data/');
+                        var storesRef = rootRef.child('app');
                         var newStoreRef = storesRef.push();
                         newStoreRef.set({
                            name: name,
@@ -135,7 +135,7 @@
                         });
                        
                     alert(Success);
-                    console.log("Success" + firebaseRef.snapshot.value());
+                    console.log("Success" );
                         // window.location.href="container.html";
 
 

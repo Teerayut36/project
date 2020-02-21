@@ -9,7 +9,7 @@
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" rel="stylesheet"
         type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/customer.css">
+    <link rel="stylesheet" type="text/css" href="styles/order.css">
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
@@ -49,15 +49,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand active" href="#">ร้านรับสกรีนแผ่นรองเมาส์</a>
-
+                <a class="navbar-brand active" href="index2.html">ร้านรับสกรีนแผ่นรองเมาส์</a>
+                
             </div>
-
+            
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ออกแบบสินค้า.html">ออกแบบสินค้า</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#">ออกแบบสินค้า</a></li>
+                    <li><a href="#about">Product</a></li>
+                    <li><a href="#portfolio">ตะกร้า</a></li>
                     <li><a href="#contact">Contact</a></li>
 
                     <li><a href="logout.html">logout</a></li>
@@ -67,27 +67,43 @@
     </nav>
     <!-- Navbar Section End -->
     <!-- Header Section Start -->
+
     <header class="header">
         <form>
             <div id="about">
                 <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="..." class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">ชื่อ</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="ชื่อ">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">นามสกุล</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="นามสกุล">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput">เบอร์โทรศัพท์</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="เบอร์โทรศัพท์">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">ID LINE</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="line">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">FACEBOOK</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="facebook">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">ที่อยู่</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                    
+                    <button type="submit" class="btn">สั่งสินค้า</button>
                 </div>
             </div>
         </form>
     </header>
+
+    
     <!-- Footer Section End -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

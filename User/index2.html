@@ -9,7 +9,7 @@
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" rel="stylesheet"
         type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/table.css">
+    <link rel="stylesheet" type="text/css" href="styles/portfolio.css">
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
@@ -49,16 +49,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand active" href="#">ร้านรับสกรีนแผ่นรองเมาส์</a>
-
+                <a class="navbar-brand active" href="index2.html">ร้านรับสกรีนแผ่นรองเมาส์</a>
             </div>
-
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ออกแบบสินค้า.html">ออกแบบสินค้า</a></li>
+                    <li><a href="#">ออกแบบสินค้า</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="order.html">ที่อยู่</a></li>
 
                     <li><a href="logout.html">logout</a></li>
                 </ul>
@@ -68,35 +66,27 @@
     <!-- Navbar Section End -->
     <!-- Header Section Start -->
     <header class="header">
-        <form>
-            <div id="about">
-                <div class="card">
-                <table id="table">
-                    <tr>
-                        <th>ชื่อ</th>
-                        <th>นามสกุล</th>
-                        <th>view</th>
-                        <th>สถานะ</th>
-                        <th>delete</th>
-                      </tr>
-                      <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>
-                           <button type="submit" class="btn">delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Island Trading</td>
-                        <td>Helen Bennett</td>
-                        <td>UK</td>
-                      </tr>
-                  </table>
+        <div id="about">
+            <div class="text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary-main">ร้านรับสกรีนแผ่นรองเมาส์</span>
+                    <span
+                        class="heading-primary-sub">ลูกค้าสามารถนำแบบของตัวเองมาทำได้ทางร้านมีแผ่นแบบไม่มีลายให้</span>
+                </h1>
             </div>
         </div>
-        </form>
     </header>
+
+
+    <!-- Footer Section Start -->
+    <footer>
+
+        <div id="footer-below">ร้านรับทำแผ่นรองเม้าส์ &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </div>
+    </footer>
     <!-- Footer Section End -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

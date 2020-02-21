@@ -1,35 +1,53 @@
 <html>
 
 <head>
-    <title>Firebase Authentication</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Addproduact</title>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" rel="stylesheet"
+        type="text/css">
+    <link rel="stylesheet" type="text/css" href="styles/addproduct.css">
 </head>
 
 <body>
-    <div class="mdl-layout mdl-js-layout">
-        <header class="mdl-layout__header mdl-layout__header--scroll">
-            <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title">Add new data</span>
-
+    <!-- Navbar Section Start-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand active" href="index2.html">ร้านรับทำแผ่นรองเมาส์</a>
             </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Menu</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="main.html">Report</a>
-                <a class="mdl-navigation__link" href="logout.html" id="sign-out">Logout</a>
-            </nav>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="Addproduct.html">AddProduct</a></li>
+                    <li><a href="table.html">รายละเอียดของลูกค้า</a></li>
+                    <li><a href="Customer.html">ข้อมูลของลูกค้า</a></li>
+                    <li><a href="logout.html">logout</a></li>
+                </ul>
+            </div>
         </div>
-        <main class="mdl-layout__content">
+    </nav>
+    <header class="header">
+        <div id="about">
+        <div class="card">
+
             <div class="page-content" style="padding-top: 60px;" align="center">
                 <!-- Your content goes here -->
                 <h4>Add Data</h4>
                 <form>
                     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                       
+
                         <tbody>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">neme</td>
@@ -61,7 +79,7 @@
                             </tr>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">
-                                    <button id="add-data"
+                                    <button id="add-data" onclick="Product()"
                                         class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
                                         Submit
                                     </button>
@@ -71,7 +89,7 @@
                                 </td>
                             </tr>
 
-                           
+
                         </tbody>
                     </table>
                 </form>
@@ -79,7 +97,7 @@
 
 
                 <!--Insert JS-->
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
                 <!-- The core Firebase JS SDK is always required and must be listed first -->
                 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
 
@@ -89,9 +107,9 @@
                 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
-               
 
-                
+
+
                 <script>
                     // Your web app's Firebase configuration
                     var firebaseConfig = {
@@ -110,33 +128,40 @@
                     var thumbnail;
 
                     firebase.initializeApp(firebaseConfig);
-                   
+                    firebase.analytics();
+                    var database = firebase.database();
 
-                    var fileButton = document.getElementById("fileButton");
+                    var fileButton = document.getElementById("fileButton")
                     fileButton.addEventListener('change', function (e) {
                         var file = e.target.files[0];
-                       // put img
+                        //put img
                         var storageRef = firebase.storage().ref(file.name);
                         storageRef.put(file);
-                        thumbnail = "https://firebasestorage.googleapis.com/v0/b/" + config["storageBucket"] + "/o/" + file.name + "?alt=media";
+                        thumbnail = "https://firebasestorage.googleapis.com/v0/b/" + firebaseconfig["storageBucket"] + "/o/" + file.name + "?alt=media";
                     });
 
-                    document.getElementById("add-data").onclick = function (e) {
+                    function Product() {
+                        var name = document.getElementById('name');
+                        var price = document.getElementById('price');
 
-                        var name = document.getElementById('name').value;
-                        var price = document.getElementById('price').value;
-                        var rootRef = firebase.database().ref();
-                        var storesRef = rootRef.child('app');
-                        var newStoreRef = storesRef.push();
-                        newStoreRef.set({
-                           name: name,
+
+
+                        insert(name.value, price.value, fileButton.value)
+
+                    }
+
+                    function insert(name, price, thumbnail) {
+
+                        var firebaseRef = firebase.database().ref("product");
+                        firebaseRef.push({
+                            name: name,
                             price: price,
                             thumbnail: thumbnail
+
                         });
-                       
-                    alert(Success);
-                    console.log("Success" );
-                        // window.location.href="container.html";
+
+                        alert(firebaseRef);
+                        console.log("firebaseRef" + firebaseRef.snapshot.value());
 
 
                     }
@@ -145,8 +170,10 @@
 
 
             </div>
-        </main>
-    </div>
+        </div>
+        </div>
+    </header>
+
 </body>
 
 

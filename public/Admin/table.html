@@ -10,30 +10,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" rel="stylesheet"
         type="text/css">
     <link rel="stylesheet" type="text/css" href="styles/table.css">
+    <!--<script src="app.js"></script>-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-   https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyA5zZtq4NVN7Ggf9FW0FKxKQJXv9XnLjHU",
-            authDomain: "projectfanal1.firebaseapp.com",
-            databaseURL: "https://projectfanal1.firebaseio.com",
-            projectId: "projectfanal1",
-            storageBucket: "projectfanal1.appspot.com",
-            messagingSenderId: "620353288799",
-            appId: "1:620353288799:web:74cb7de3bcd96132eab9ea",
-            measurementId: "G-X46HF19Y0B"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
 
 </head>
 
@@ -69,23 +51,79 @@
         <form>
             <div id="about">
                 <div class="card">
-                <table id="table">
-                    <tr>
-                        <th>ชื่อ</th>
-                        <th>นามสกุล</th>
-                        <th>view</th>
-                        <th>สถานะ</th>
-                        <th>delete</th>
-                      </tr>
-                     
-                  </table>
+                    <table id="table">
+                        <tr>
+                            <th>ชื่อ</th>
+                            <th>นามสกุล</th>
+                            <th>view</th>
+                            <th>สถานะ</th>
+                            <th>delete</th>
+                            <th>delete</th>
+                        </tr>
+
+                    </table>
+                    <ul class="list-group" id="list"></ul>
+                </div>
             </div>
-        </div>
         </form>
     </header>
-    <!-- Footer Section End -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
+            authDomain: "project-8cea8.firebaseapp.com",
+            databaseURL: "https://project-8cea8.firebaseio.com",
+            projectId: "project-8cea8",
+            storageBucket: "project-8cea8.appspot.com",
+            messagingSenderId: "915660167642",
+            appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
+            measurementId: "G-MDK8FVSGYM"
+        };
+
+
+        // Initialize Firebase
+
+
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var database = firebase.database();
+        database.ref("product").once('child_added', function (snapshot) {
+            if (snapshot.exists()) {
+                var content = '';
+                snapshot.forEach(function (data) {
+                    var val = data.val();
+                    console.log("row", data.val());
+                    console.log("title", data.getKey());
+
+                    content += '<tr>';
+                    content += '<td>' + data.getKey() + '</td>';
+                    content += '<td>' + val.name + '</td>';
+                    content += '<td>' + val.price + '</td>';
+                    content += '<td><a href="' + val.thumbnail + '" target="_blank"> Click for Preview</a></td>';
+                    content += '<td><a href="edit.html?id=' + data.getKey() + '" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Edit</a></td>';
+                    content += '</tr>';
+
+                });
+                var theDiv = document.getElementById("ex-table");
+                theDiv.innerHTML += content;
+                //$('#ex-table').append(content);
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

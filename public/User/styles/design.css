@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Athiti', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.25;
+}
+.navbar-inverse {
+    background-image: linear-gradient( to right top, rgba(22, 21, 22, 0.87),rgba(137, 136, 138, 0.884));
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    font-size: 15px;
+   
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+    font-size: 30px;
+}
+
+
+
+/************ Navbar Section End *************/
+
+
+/************ Header Section Start ************/
+.header {
+    height:100vh;
+    
+    background-color: rgb(211, 208, 208);
+    
+    
+}
+#about {
+    padding-top: 10px;
+    padding-bottom: 100px;
+    
+   
+}
+.card{   
+    width: 500pt;
+    padding: 30px;
+    margin: auto;
+    background-color: rgb(143, 143, 146);
+}
+  .contain{
+    margin-left:auto;
+    margin-right:auto;  
+    margin-top:calc(calc(100vh - 405px)/2);
+  }
+  #form1{
+    width:auto;
+  }
+  .alert{
+    text-align:center;
+  }
+  
+  #blah{  
+    max-height:256px;
+    height:auto;
+    width:auto;
+    display:block;
+    margin-left: auto;
+     margin-right: auto;
+    padding:5px;
+  }
+  #img_contain{
+    border-radius:5px;
+    /*  border:1px solid grey;*/
+    margin-top:20px;
+    width:auto;  
+  }
+  .input-group{  
+    margin-left:calc(calc(100vw - 320px)/2);
+    margin-top:40px;
+    width:320px;
+  }
+  .imgInp{  
+    width:150px;
+    margin-top:10px;
+    padding:10px;
+    background-color:#d3d3d3;  
+  }
+  .loading{
+     animation:blinkingText ease 2.5s infinite;
+  }
+ 
+  .custom-file-label{
+    cursor:pointer;
+  }
+  
+  /************CREDITS**************/
+  .credit{    
+    font: 14px "Century Gothic", Futura, sans-serif;
+    font-size:12px;  
+    color:#3d3d3d;
+    text-align:left;
+    margin-top:10px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+  }
+  .credit a{
+    color:gray;
+  }
+  .credit a:hover{
+    color:black;  
+  }
+  .credit a:visited{
+    color:MediumPurple;
+  }
+  .btn{
+    color: white;
+background-color: indianred;
+}

@@ -1,0 +1,180 @@
+*{
+    box-sizing: border-box;
+    
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .clear {
+    clear: both;
+  }
+  /* end */
+  
+  .show-product {
+    width: 100%;
+    
+  }
+  .show-product_column {
+    width: 100%;
+  /*   float:left; */
+  }
+  .show-product .product-item {
+    width: 23%;
+    margin: 5px 1%;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(102, 204, 117,0.5);
+    border-radius: 1.375em;
+  }
+  .product-item_img {
+    width: 100%;
+  }
+  
+  .product-item_img img {
+    width: 80%;
+    border: 1px solid #6bc513;
+      border-radius: 50%;
+      height: 150px;
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+      width: 150px;
+    
+  }
+  
+  .product-item_img:hover img {
+    -webkit-transform: scale(1.07);
+            transform: scale(1.07);
+  }
+  .product-item_info {
+    width: 100%;
+    
+  }
+  .price {
+        color: #6bc513;
+      font-size: 22px;
+      font-weight: bold;
+  }
+  .product-item_info p{
+    margin:0;
+  }
+  .product-item_info .detail{
+    text-align: normal;
+    padding:0;
+    margin: 5px 0;
+  }
+  .product-item_info h2 {
+    margin: 0;
+  }
+  .product-item_info h2 a {
+    color: inherit;
+    font-weight: bold;
+  }
+  .product-item_info h2 a:hover {
+  /*   background: #6bc513 none repeat scroll 0 0; */
+      border-color: #6bc513;
+      color: #6bc513;
+  }
+  
+  /* reponsive */
+  
+  @media screen and (max-width: 1680px) {}
+  
+  @media screen and (max-width: 1280px) {}
+  
+  /* tablet */
+  
+  @media screen and (max-width: 768px) {
+   .show-product_column {
+  /*   width: 50%; */
+     
+  }
+    .show-product .product-item {
+      width: 48%;
+      
+    }
+  }
+  /* mobile */
+  
+  @media screen and (max-width: 480px) {
+      .show-product .product-item {
+      width: 98%;
+      
+    }
+  }
+  
+  /* main css */
+  
+  @import url(font-awesome.min.css);
+  /* @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700"); */
+  
+  /* @import url(fonts/font_oyo.css); */
+  
+  /*
+      <!--
+      Subject: Shop, News, Blog with HTML5
+      Assignment HTML5 & CSS3
+      @author: Nguyen Cao Cuong
+      -->
+  */
+  
+  * {
+      box-sizing: border-box;
+      text-shadow: 0 0 1px rgba(102, 204, 117,0.25);
+  }
+  
+  .clear {
+      clear: both;
+  }
+  #about {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    
+   
+}  
+/*********** Global Section **********/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Athiti', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+
+/*********** Navbar Section Start ***********/
+
+.navbar-inverse {
+    background-image: linear-gradient( to right top, rgba(22, 21, 22, 0.87),rgba(137, 136, 138, 0.884));
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    font-size: 15px;
+   
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+    font-size: 30px;
+}
+
+
+
+/************ Navbar Section End *************/
+
+
+/************ Header Section Start ************/
+.header {
+    height:100vh;
+    background-color: rgb(211, 208, 208);
+    
+    
+}

@@ -53,4 +53,8 @@ body {
     padding: 30px;
     margin: auto;
     background-color: rgb(143, 143, 146);
+
+}
+.card-img{
+    width: 100pt;
 }

@@ -20,7 +20,7 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    
 </script>
 
 <body>
@@ -32,12 +32,13 @@
 
 
 </body>
-<script>
 
+<script>
+var current_user=null;
 
     function logout() {
         firebase.auth().signOut().then(function () {
-
+            current_user=null;
             window.location.href = 'index.html';
 
             // Sign-out successful.

@@ -40,3 +40,9 @@ function resize(which, max) {
       if (elem.height > max) elem.height = max;
     }
   }
+  $("#inpt-img").slider({
+    orientation: "vertical",
+    min: 0,
+    max: 150,
+    value: 50
+});

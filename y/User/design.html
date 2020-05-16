@@ -1,0 +1,385 @@
+<html>
+
+<head>
+    <title>ร้านรับทำแผ่นรองเมาส์</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Athiti&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" rel="stylesheet"
+        type="text/css">
+    <link rel="stylesheet" type="text/css" href="styles/portfolio.css">
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/fabric.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="styles/order.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+      apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
+      authDomain: "project-8cea8.firebaseapp.com",
+      databaseURL: "https://project-8cea8.firebaseio.com",
+      projectId: "project-8cea8",
+      storageBucket: "project-8cea8.appspot.com",
+      messagingSenderId: "915660167642",
+      appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
+      measurementId: "G-MDK8FVSGYM"
+    };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+
+
+
+
+    </script>
+    <script src="js/design.js"></script>
+
+
+</head>
+
+<body>
+    <!-- Navbar Section Start-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand active" href="index2.html">ร้านรับทำแผ่นรองเมาส์</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="design.html">ออกแบบสินค้า</a></li>
+                    <li><a href="producr.html">Product</a></li>
+
+                    <li><a href="order.html">Contact</a></li>
+
+                    <li><a href="logout.html">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+   
+    <header>
+        <div class="desktop" style="margin: auto;">
+            <div class="content">
+
+                <div class="bgcolor" style="padding:15px;text-align:center">
+                    <!-- <div ><strong>เปลี่ยนสีเสื้อ</strong></div>
+                           <span class="white"></span>
+                           <span class="red"></span>
+                           <span class="green"></span>
+                           <span class="blue"></span>
+                           <span class="black"></span>
+                           
+                           </div> -->
+
+                    <canvas id="mainscreen"></canvas>
+
+                    <div style="padding:15px;text-align:center" class="clear:both;">
+
+                        <i>หากต้องการลบ เลือก object และกด delete</i>
+
+                    </div>
+
+
+
+                    <!-- <div class="text">
+                                 <div><strong>เพิ่ม ตัวอักษร</strong></div>
+                                 <input type="text" class="txt"><input type="button" class="addtxt" name="เพิ่ม" value="เพิ่ม"> -->
+                    <!--     
+                            <div><strong>เปลี่ยนสีตัวอักษร</strong></div>
+                            <div class="txtcolor">
+                      <span class="white"></span>
+                           <span class="red"></span>
+                           <span class="green"></span>
+                           <span class="blue"></span>
+                           <span class="black"></span>
+                           </div>
+                        </div> -->
+
+
+                    <div class="imageupload">
+                        <div><strong>เพิ่มรูปภาพ</strong></div>
+                        <input id="imagebroswer" type="file">
+                    </div>
+
+
+
+                    <div>
+                        <button type="submit" class="save"
+                            style="padding:5px 15px;text-align:center;color:#fff;background:red;clear:both;margin:20px 0 0 0;">
+                            บันทึกรูปภาพ</button>
+
+
+                    </div>
+                    <header>
+
+                </div>
+ <div class="form-group">
+                        <label for="formGroupExampleInput">ชื่อ</label>
+                        <input type="text" class="form-control" id="name" value="" placeholder="ชื่อ">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">นามสกุล</label>
+                        <input type="text" class="form-control" id="last" value="" placeholder="นามสกุล">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">เบอร์โทรศัพท์</label>
+                        <input type="text" class="form-control" id="tot" value="" placeholder="เบอร์โทรศัพท์">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">ID LINE</label>
+                        <input type="text" class="form-control" id="id" value="" placeholder="line">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">FACEBOOK</label>
+                        <input type="text" class="form-control" id="face" value="" placeholder="facebook">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">ที่อยู่</label>
+                        <textarea class="form-control" id="home" value="" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">ราคา : 990฿</label>
+                        
+                    </div>
+                    <button type="button" id="order"  class="btn">สั่งสินค้า</button>
+                </div>
+                
+            </header>
+            </div>
+    </header>
+
+</body>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+
+
+    .content {
+        margin: 0 auto;
+        width: 600px;
+        max-width: 100%;
+    }
+
+    .text {
+        float: left;
+        width: 50%;
+
+    }
+
+    .imageupload {
+        float: left;
+        width: 50%;
+
+    }
+
+    .bgcolor span,
+    .txtcolor span {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        margin: 5px;
+        border: 1px solid #000;
+    }
+</style>
+
+<script>
+
+
+    $(document).ready(function () {
+
+
+        var screen = new fabric.Canvas('mainscreen');
+        screen.setHeight(360);
+        screen.setWidth(600);
+
+
+
+
+        fabric.Image.fromURL('images/แผ่น1.png', function (oImg) {
+
+            oImg.width = 360;
+            oImg.height = 200;
+            oImg.set('selectable', false);
+            screen.add(oImg);
+            screen.centerObject(oImg);
+
+            bg = screen.item(0);
+
+            bg.filters.length = 0;
+            bg.filters.push(new fabric.Image.filters.Tint({
+                color: 'white',
+                opacity: 0.6
+            }));
+            bg.applyFilters(screen.renderAll.bind(screen));
+
+
+
+        });
+
+
+        //    // loop ใส่สีให้ กับ ปุ่มเลือกสีเสื้อ
+        //  $.each( $(".bgcolor span") , function(  ) {
+
+
+        //       var className = $(this).attr('class');
+
+        //       $(".bgcolor ."+className).css("background",className);
+
+        //   });
+
+        //   // loop ใส่สีให้ กับ ปุ่มเลือกสีตัวอักษร
+        //  $.each( $(".txtcolor span") , function(  ) {
+
+
+        //       var className = $(this).attr('class');
+
+        //       $(".txtcolor ."+className).css("background",className);
+
+        //   });
+
+
+        // save รูปที่แต่งแล้ว
+        $(".save").click(function () {
+            screen.deactivateAll().renderAll();
+            window.open(screen.toDataURL('png'));
+
+        });
+
+        // // event การเลือกสีเสื้อ
+        // $( ".bgcolor span" ).click(function() {
+
+
+        //       var color = $(this).attr('class'); 
+
+        //       bg = screen.item(0);
+
+        //       bg.filters.length = 0;
+        //       bg.filters.push(new fabric.Image.filters.Tint({
+        //       color: color,
+        //       opacity: .5
+        //       }));
+        //       bg.applyFilters(screen.renderAll.bind(screen));
+        //  }); 
+
+
+        //  // event การเลือกสีตัวอักษร
+        // $( ".txtcolor span" ).click(function() {
+
+
+        //       var color = $(this).attr('class'); 
+
+        //       var obtxt = screen.getActiveObject();
+
+
+        //          if(obtxt){
+        //       obtxt.setColor( color );
+        //       screen.renderAll();
+        //       }else{
+        //       alert("กรุณาเลือกตัวอักษรที่ต้องการเปลี่ยนสี");
+        //       }
+        //  }); 
+
+
+
+
+
+        // event ในเการเพิ่มรูปภาพ
+        $("#imagebroswer").change(function () {
+
+            var e = $(this);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var imgObj = new Image();
+                imgObj.src = event.target.result;
+                imgObj.onload = function () {
+
+
+
+
+
+                    var image = new fabric.Image(imgObj);
+                    image.set({
+                        angle: 0,
+
+
+                    });
+                    screen.centerObject(image);
+                    screen.add(image);
+                    screen.renderAll();
+                }
+            }
+
+
+            reader.readAsDataURL(e[0].files[0]);
+
+        });
+
+
+        // กดปุ่ม delete
+        $('body').keyup(function (e) {
+            if (e.keyCode == 46) {
+                var activeObject = screen.getActiveObject();
+
+                screen.remove(activeObject);
+            }
+        });
+
+
+
+        $(".addtxt").click(function () {
+            var txt = $(".txt").val();
+            var obtext = new fabric.Text(txt, { fontSize: 20 });
+
+            screen.centerObject(obtext);
+            screen.add(obtext);
+            screen.renderAll();
+
+
+            $(".txt").val("");
+
+        });
+
+
+
+    });
+
+</script>
+
+
+
+</html>

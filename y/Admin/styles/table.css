@@ -62,8 +62,8 @@ body {
 }
       
  #table td, #table  th {
-        border: 1px solid #ddd;
-        padding: 8px;
+        border: 5px solid #ddd;
+        padding: 10px;
 }
       
 #table  tr:nth-child{background-color: #f2f2f2;}
@@ -76,4 +76,9 @@ body {
         text-align: left;
         background-color: rgb(113, 116, 114);
         color: white;
+}
+.mdl-data-table{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
 }

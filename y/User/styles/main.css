@@ -30,8 +30,8 @@
 body {
   font-family: 'Athiti', sans-serif;
   font-size: 18px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-weight: 200px;
+  line-height: 25px;
 }
 
 /* ----------------- Layout ----------------- */
@@ -124,13 +124,14 @@ button {
 
 .products {
   display: grid;
-  grid-gap: var(--base-padding);
+ 
   overflow: auto;
+  max-width:auto;
 }
 
 @media screen and (min-width: 600px) {
   .products {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(0, 1fr);
   }
 }
 
@@ -140,27 +141,28 @@ button {
   }
 }
 
-.product {
+.shop-item {
   text-align: center;
   padding: var(--base-padding);
-  border: 2px dashed var(--color-gray-light);
+  border: 0px dashed var(--color-gray-light);
+  
 }
 
 .product:hover {
   border-style: solid;
 }
 
-.product__price:after {
+.shop-item-price:after {
   content: '฿';
 }
-.product__name{
+.shop-item-name{
   font-family: 'Athiti', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-size: 10px;
+  font-weight: 200;
+  line-height: 1.2;
 }
-.product__image {
-  max-width: 65px;
+.shop-item-image {
+  max-width: 165px;
   transition: .3s all;
   filter: drop-shadow(0px 0px 0px transparent);
 }
@@ -301,3 +303,31 @@ button {
 
 
 /************ Navbar Section End *************/
+.cart-row{
+  display: flex;
+}
+.cart-item {
+  width: 45%;
+}
+
+.cart-price {
+  width: 20%;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.cart-quantity {
+  width: 35%;
+}
+
+.cart-item-title {
+  color: #333;
+  margin-left: .5em;
+  font-size: 1.2em;
+}
+
+.cart-item-image {
+  width: 75px;
+  height: auto;
+  border-radius: 10px;
+}

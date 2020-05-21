@@ -3,7 +3,7 @@
 <head>
     <title>Web login</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles/signup.css">
+   
    
     
 </head>
@@ -90,6 +90,14 @@
                 // ...
             });
         }
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                //send user to home.html
+                // ...
+                window.location.href = 'js2.html'
+            }
+        });
 </script>
 </body>
 </html>

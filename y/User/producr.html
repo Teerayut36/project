@@ -47,56 +47,41 @@
 	<!-- Header Section Start -->
 
 	<header class="header">
-		<form>
+	
 			<div id="about">
 
 
 				<main class="main-container">
 
 					<section class="section">
-						<h2 class="text-center">Products</h2>
-						<div class="products">
-							<!--
-					https://www.iconfinder.com/iconsets/beverage
-					Creative Commons (Attribution 3.0 Unported)
-					https://creativemarket.com/eucalyp
-				-->
-							<div class="product" >
-								<img class="product__image" src="images/Minoru.png" alt="Beer">
-								<h2 class="product__name">MOUSEPAD MINORU LIMITED EDITION</h2>
-								<h3 class="product__price">1,190</h3>
-								<button class="btn btn--primary" data-action="ADD_TO_CART">Add To Cart</button>
-							</div>
-							<!-- <div class="product">
-								<img class="product__image" src="images/Mith1.png" alt="Energy Drink">
-								<h2 class="product__name">MOUSEPAD FLICK AIM II</h2>
-								<h3 class="product__price">990</h3>
-								<button class="btn btn--primary" data-action="ADD_TO_CART">Add To Cart</button>
-							</div>
-							<div class="product">
-								<img class="product__image" src="images/Mith2.png" alt="Juice">
-								<h2 class="product__name">MOUSEPAD FLICK AIM I</h2>
-								<h3 class="product__price">990</h3>
-								<button class="btn btn--primary" data-action="ADD_TO_CART">Add To Cart</button>
-							</div>
-							<div class="product">
-								<img class="product__image" src="images/Mith3.png" alt="Milk">
-								<h2 class="product__name">MOUSEPAD MITH IN BLACK</h2>
-								<h3 class="product__price">990</h3>
-								<button class="btn btn--primary" data-action="ADD_TO_CART">Add To Cart</button>
-							</div> -->
+						<h2 >Products</h2>
+						<div id="data" class="products">
 
 						</div>
-					</section>
 
-					<section class="section">
-						<h2 class="text-center">Cart</h2>
-						<div class="cart"></div>
-					</section>
 
+					</section>
+					
+						
+					<section class="content-section">
+						
+						<h2 class="section-header">CART</h2>
+						<div class="cart-row">
+							<span class="cart-item cart-header cart-column">ITEM</span>
+							<span class="cart-price cart-header cart-column">PRICE</span>
+							<span class="cart-quantity cart-header cart-column">QUANTITY</span>
+						</div>
+						<div class="cart-items" id="cart">
+						</div>
+						<div class="cart-total">
+							<strong class="cart-total-title">Total</strong>
+							<span class="cart-total-price">0฿</span>
+						</div>
+						<button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+					</section>
+					</div>
 				</main>
 
-		</form>
 	</header>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -141,7 +126,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
 
 	</script>
 	<script src="js/product.js"></script>
-	<!-- <script src="js/pageWithProducts.js"></script> -->
+	<!-- <script src="js/cart.js"></script> -->
 </body>
 
 </html>

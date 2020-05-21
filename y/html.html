@@ -1,164 +1,520 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
+
 <head>
-  <title>ทดสอบ Upload ไฟล์</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" ></script>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="ejs.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
+
   <script>
     // Initialize Firebase
-    var firebaseConfig = {
-      apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
-      authDomain: "project-8cea8.firebaseapp.com",
-      databaseURL: "https://project-8cea8.firebaseio.com",
-      projectId: "project-8cea8",
-      storageBucket: "project-8cea8.appspot.com",
-      messagingSenderId: "915660167642",
-      appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
-      measurementId: "G-MDK8FVSGYM"
+    var config = {
+      apiKey: "AIzaSyAM8Oro8zBvD0US2xpEez2z4-l_DQHstIM",
+      authDomain: "shopee-1.firebaseapp.com",
+      databaseURL: "https://shopee-1.firebaseio.com",
+      projectId: "shopee-1",
+      storageBucket: "shopee-1.appspot.com",
+      messagingSenderId: "641889602156"
     };
-    firebase.initializeApp(firebaseConfig);
-    
-//ตั้งค่า firebase
+    firebase.initializeApp(config);
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+    // Disable deprecated features
+    db.settings({
+      timestampsInSnapshots: true
+    });
   </script>
- 
-</head>
-<body>
-
-<div class="container">
- 
-    <br /><br />
-   <!-- แสดงปุ่ม เข้าสู่ระบบ และออกจากระบบ  -->
-    <div id="login_panel" class='text-right' >
-          
-<!-- ปุ่มเข้าสู่ระบบ  -->          
-<button class="btn btn-primary btn_login "  style="display:none" > <i class="fa fa-key" ></i> เข้าสู่ระบบ </button>
-          <span class="user_info" ></span> <!-- แสดง ข้อมูลผู้ใช้ ที่ login อยู่  -->
-<!-- ปุ่มออกจากระบบ  --> 
-          <button class="btn btn-danger  btn_sign_out " style="display:none" > <i class="fa fa-sign-out-alt" ></i> ออกจากระบบ </button> 
-    </div>
-
-
-   
-<!--   สำหรับเลือกไฟล์  -->
-     <div id="upload_panel" style="display: none" >
-
-            <div class="form-group">
-
-                    <label>เลือกไฟล์</label>
-                    <!-- input type file สำหรับเลือกไฟล์ที่จะ upload -->
-                    <input class="form-control-file" type="file" id="file_upload"  />
-                   
-                    <!-- แสดง percent สถานะการ upload -->
-                     <h4 id="upload_status"></h4>
-
-            </div>
-         
-
-    </div>
-
-
-    
-   <script>
-var current_user=null;
-
-
-firebase.auth().onAuthStateChanged(function(user) { //กำหนดชุดคำสั่งเมื่อสถานะการ login เปลี่ยน
-    if (user) //กรณี login แล้ว
-    {
-            console.log(user);
-            current_user=user;//เก็บข้อมูลของผู้ใช้ปัจจุบัน
-    
-            $("#login_panel").find(".btn_login").css("display","none");//ซ่อนปุ่ม login
-            $("#login_panel").find(".btn_sign_out").css("display","");//แสดงปุ่ม ออกจากระบบ
-            // $("#upload_panel").css("display","");//แสดงส่วนให้ Upload ไฟล์
-            $("#login_panel").find(".user_info").html(user.displayName);//แสดงชื่อผู้ใช้ที่ login
+  <style>
+    .toolbaricon {
+      padding-left: 5px;
+      padding-bottom: 5px;
+      padding-right: 5px;
+      color: 111111;
 
     }
-    else
-    {
-       //กรณียังไม่ได้ login
-        $("#login_panel").find(".btn_login").css("display","");//แสดงปุ่มให้ login
-        $("#login_panel").find(".btn_sign_out").css("display","none");//ซ่อนปุ่มออกจากระบบ
-        // $("#upload_panel").css("display","none");//ซ่อนส่วนให้ Upload ไฟล์ 
-        $("#login_panel").find(".user_info").html("");//กำหนดให้ส่วนแสดงผู้ใช้ที่ login อยู๋ เป็นค่าว่าง
-}
 
-});
+    * {
+      font-family: 'Spicy Rice', cursive;
+    }
+  </style>
+</head>
 
 
-$("#login_panel").find(".btn_login").on("click",function(){ //กำหนดชุดคำสั่ง เมื่อกด ปุ่ม login
-//แสดงหน้าต่างให้ login โดยใช้ google account
-  var GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithRedirect(GoogleAuthProvider);
+<body>
+  <ons-navigator swipeable id="myNavigator" page="tab3.html">
+    <ons-page>
+      <ons-toolbar style="background:#DDDDDD;">
+        <div class="left">
+          <ons-icon class="toolbaricon" size="30px" icon="fa-camera" onclick="window.location.href='scan.html'">
+          </ons-icon>
+        </div>
+        <div class="center" id="appname">#</div>
+        <div class="right">
+          <ons-icon class="toolbaricon" size="30px" icon="fa-sign-out" onclick="window.location.href='log.html'">
+          </ons-icon>
+        </div>
+      </ons-toolbar>
 
-});
-$("#login_panel").find(".btn_sign_out").on("click",function(){
-//กำหนดชุดคำสั่งเมื่อกดปุ่ม ออกจากระบบ
-      
-//ออกจากระบบ โดยใช้ firebase
-      firebase.auth().signOut().then(function() {
-        current_user=null;//กำหนดตัวแปร object เก็บข้อมูลผู้ใช้เป็นค่า null
-      });
+      <ons-tabbar id="tabbar" swipeable position="auto" id='tabbar'>
+        <ons-tab page="tab1.html" label="Home" icon="ion-home, material:md-home" active style="background:#DDDDDD;">
+        </ons-tab>
+        <ons-tab page="tab2.html" label="Cart" icon="fa-shopping-cart" badge="" active-icon="fa-shopping-cart" style="background:#DDDDDD;">
+        </ons-tab>
+        <ons-tab page="tab3.html" label="product" icon="fa-shopping-cart" active-icon="fa-shopping-cart" style="background:#DDDDDD;">
+        </ons-tab>
 
-});
+      </ons-tabbar>
+    </ons-page>
 
-// $("#file_upload").on("change",function(event){ //กำหนดชุดคำสั่งเมื่อเลือกไฟล์
-
-
-//     var file=event.target.files[0];//เก็บ object file ไว้ในตัวแปร file
-
-//     if(file==null)//ถ้า object file เป็น null ให้ ออกจาก function
-//     {
-//         return;
-//     }
-
-//     var file_ref=firebase.storage().ref(file.name);//สร้าง file ใน firebase
-//     var task=file_ref.put(file);// upload file เข้าไปใน firebase
- 
-//     //กำหนดชุดคำสั่งให้ทำงานเมื่อมีการเปลี่ยนสถานะ
-//     task.on("state_changed",
-
-//         function progress(snapshot){//แสดง percent ความก้าวหน้าเมื่อ upload
-
-//             var percent=( snapshot.bytesTransferred / snapshot.totalBytes)*100;//คิดค่า % ความก้าวหน้า
-         
-//             //แสดง % ความก้าวหน้าที่ <h4 id="upload_status"></h4>                       
-//             $("#upload_status").html(percent+"%");
-//         },
-//         function err(err){ //กำหนดชุดคำสั่งให้ทำงานเมื่อ upload  error
-
-//         },
-//         function complete(){ //กำหนดชุดคำสั่ง เมื่อ Upload เสร็จแล้ว
-
-//             $("#upload_status").html("");//ซ่อน % ความก้าวหน้า เมื่อ Upload เสร็จแล้ว
-//             $("#file_upload").val("");//ให้ input file เป็นค่าว่าง
-//             //แสดงรูปภาพที่ เพิ่ง Upload
-//            // หา URL ของ ไฟล์รูปที่เพิ่ง Upload
-//             firebase.storage().ref(file.name).getDownloadURL().then(function(url) {
-//                  //แสดงรูปภาพใน <h4 id="upload_status"></h4>                
-//                 var img=document.createElement("img");
-//                 $(img).prop("src",url);
-
-//                 $("#upload_status").html(img);
-
-//             });
-//         },
+  </ons-navigator>
   
-//     );
+  <ons-modal direction="up">
+    <div style="text-align: center">
+      <p>
+        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Add To cart...
+      </p>
+    </div>
+  </ons-modal>
+  <ons-modal id="Delete" direction="up">
+    <div style="text-align: center">
+      <p>
+        <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Delete...
+      </p>
+    </div>
+  </ons-modal>
+  <template id="tab1.html">
+    <ons-page id="Tab1">
+      <p style="text-align: center; margin-top: 10px;">
+        <ons-search-input placeholder="Search" onchange="search(this.value)"></ons-search-input>
+      </p>
+      <ons-carousel swipeable auto-scroll overscrollable id="carousel" style="height: 300px;">
+        <ons-carousel-item id="carousel1" style="background: url('images/1.jpg') no-repeat center; background-size: contain;">
+        </ons-carousel-item>
+        <ons-carousel-item id="carousel2" style="background: url('images/2.jpg') no-repeat center; background-size: contain;">
+        </ons-carousel-item>
+        <ons-carousel-item id="carousel3" style="background: url('images/3.jpg') no-repeat center; background-size: contain;">
+        </ons-carousel-item>
+      </ons-carousel>
+
+      <div id="icons"></div>
+
+      <script id="icon_template" type="text/template">
+        <ons-row class="category" style="text-align:center">      
+          <% categories.forEach(function(category){%>
+      <ons-col style="background:#DDDDDD;" modifier="nodivider" id="  " onclick="changeTab('<%= category.name %>')"width="33%"value="<%= category.name %>">
+          <div >
+              <!-- <figure class="category_thumbnail"> -->
+                  <ons-icon id="icon1"size="60px" icon="<%= category.icon %>"></ons-icon>
+                  <div class="category_title" id="Category_1_name"> <%= category.name %> </div>
+              <!-- </figure> -->
+          </div>
+      </ons-col>
+
+      <%});%></div>
+        
+        </script>
 
 
+    </ons-page>
+  </template>
 
-// })
+  <template id="tab2.html">
+    <ons-page id="Tab2">
+      <ons-list-header>
+        <center>
+          <h1>
+            <b>SHOPPING CART</b>
+          </h1>
+        </center>
+      </ons-list-header>
+
+      <div id="pro"></div>
+      <div id="showprice"></div>
+      <script id="pro_template" type="text/template"> 
+                    <% cart.forEach(function(cart){
+                      var cart=cart.data()
+                      %>
+            <ons-list-item>
+                <div class="left" style="background:#DDDDDD;">
+                    <img class="list-item__thumbnail" src="<%= cart.photo %>">
+                </div>
+                <div class="center">
+                    <span class="list-item__title"><%= cart.itemname %></span>
+                    <span class="list-item__subtitle" style="color: blue;">฿<%= cart.price %></span>
+                </div>
+                <div class="right">
+                  <ons-icon   icon="md-delete" onclick="deleteb(<%=num%>); deleteprice('<%= cart.price %>')"></ons-icon>
+                </div>
+                 
+                    
+                    
+            </ons-list-item><%});%> 
+
+        </Script>
+      </div>
 
 
-   </script>
-</div>
+      <ons-button modifier="large">PROCEED TO PAY</ons-button>
+
+    </ons-page>
+  </template>
+
+  <template id="tab3.html">
+    <ons-page>
+
+      <div id="product"></div>
+      <script id="product_template" type="text/template"> 
+   <ons-row>
+          <% product.forEach(function(product){
+            var products = product.data();
+            %>
+  <ons-col width="49.99%" >
+    <ons-card  style="background:#DDDDDD;" style ="width=100% height=100px;"  onclick ="detail('<%- products.pid %>')" >
+          <img class="" src="<%= products.photo %>" width="100%" height="100px;"><br>
+  <%= products.Category %><br>
+  <%= products.title %><br>
+  ฿<%= products.price %>
+    </ons-card></ons-col>
+  
+  <%});%> 
+   </ons-row>
+   
+  
+  </Script>
+      </div>
+
+    </ons-page>
+  </template>
+
+  <template id="tab4.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Page 1</ons-back-button>
+        </div>
+        <div class="center"></div>
+      </ons-toolbar>
+      <div id="detail"></div>
+      <script id="detail_template" type="text/template"> 
+            <ons-card style="background:#DDDDDD;">
+             
+             <% detail.forEach(function(data){   
+              var data = data.data(); %>
+            
+                  <img src=" <%= data.photo%>" alt=""height="300px"width="100%">
+                 
+  
+              <div class="title">
+                <%= data.title%>
+              </div>
+  
+              <div class="content">
+                <div>
+                 <h1>฿<%= data.price %></h1>
+                </div>
+  
+              </div>
+              <ons-button onclick="addtocart('<%= data.pid %>'); totalprice('<%= data.price %>')" >ADD TO CART</ons-button>
+              <%})%>
+            </ons-card>
+         
+        
+        </Script>
+    </ons-page>
+  </template>
 
 </body>
+
+
+<script>
+  getHomeData();
+  tatol();
+  document.addEventListener('prechange', function (event) {
+    if (event.index == 0) {
+      console.log('Home clicked');
+      // get data for home screen  
+      getHomeData();
+    } else if (event.index == 1) {
+      console.log('Cart clicked');
+      // get data for cart screen  
+      getData2cart();
+    }
+    else if (event.index == 2) {
+      console.log('Cart click');
+      var name = localStorage.getItem('name');
+      var items = localStorage.getItem('items');
+      if (name == null && items == null) {
+        getAllproduct()
+      }
+      else if (name != null && items == null) { getAllproduct(name) }
+
+      else if (name != null && items == null) { }
+
+      // get data for cart screen  
+    } else if (event.index == 3) {
+      var title = localStorage.getItem('title');
+      console.log('Cart click');
+      // test(title)
+
+    } localStorage.clear();
+  });
+  //gethome
+  function getHomeData() {
+    var code = localStorage.getItem("code");
+ 
+    
+    if (code == null) {
+
+      var docRef = db.collection("UI").doc("home");
+      docRef.get().then(function (doc) {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          var data = doc.data();
+          $('#appname').html(data.appname);
+          var style = "background: url('images/" + data.slides[0] + "') no-repeat center; background-size: contain;'";
+          $('#carousel1').attr('style', style)
+          var icon_template = $('#icon_template').html();
+          var html = ejs.render(icon_template, { categories: data.categories });
+          $('#icons').html(html);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      }).catch(function (error) {
+        console.log("Error getting document:", error);
+      });
+    } else {
+      myNavigator.pushPage('tab4.html')
+      showdetail()
+
+    }
+  }
+
+  //getcartdata
+  function getCartData() {
+    var docRef = db.collection("UI").doc("cart");
+    docRef.get().then(function (doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        var data = doc.data();
+        // $('#photo').html(data.cart[0].photo);
+        // $('#price').html(data.cart[0].price); 
+        var pro_template = $('#pro_template').html();
+        var html = ejs.render(pro_template, { cart: data.cart });
+        $('#pro').html(html);
+      } else {
+        console.log("No such document!");
+      }
+    }).catch(function (error) {
+      console.log("Error getting document:", error);
+    });
+  }
+  //addNewdata
+  function addNewdata() {
+    db.collection("product").add(data)
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+    //getAllproduct
+    function getAllProduct(name) {
+      console.log(name);
+      if (name == null) {
+        db.collection("product").get()
+          .then(function (querySnapshot) {
+            // doc.data() is never undefined for query doc snapshots
+            var product_template = $('#product_template').html();
+            console.log(querySnapshot.docs);
+            var html = ejs.render(product_template, { product: querySnapshot.docs });
+            $('#product').html(html);
+          })
+          .catch(function (error) {
+            console.log("Error getting documents: ", error);
+          });
+      } else {
+        db.collection("product").where("category", "==", name).get()
+          .then(function (querySnapshot) {
+            console.log(querySnapshot.docs);
+            if (querySnapshot.docs.length == 0) {
+              var html = ""
+              db.collection("product").get()
+                .then(function (querySnapshot) {
+                  // doc.data() is never undefined for query doc snapshots
+                  var product_template = $('#product_template').html();
+                  console.log(querySnapshot.docs);
+                  html += ejs.render(product_template, { product: querySnapshot.docs });
+                  $('#product').html(html);
+                })
+                .catch(function (error) {
+                  console.log("Error getting documents: ", error);
+                });
+            } else {
+              db.collection("product").where("category", "==", name).get()
+                .then(function (querySnapshot) {
+                  // doc.data() is never undefined for query doc snapshots
+                  console.log(querySnapshot.docs);
+                  var product_template = $('#product_template').html();
+                  var html = ejs.render(product_template, { product: querySnapshot.docs });
+                  $('#product').html(html);
+                })
+                .catch(function (error) {
+                  console.log("Error getting documents: ", error);
+                });
+            }
+          })
+      }
+    }
+  }
+  function getAllproduct(name1) {
+    if (name1 == null) {
+      var allproduct = db.collection("product");
+      allproduct.get().then(function (querySnapshot) {
+        var product_template = $('#product_template').html();
+        var html = ejs.render(product_template, { product: querySnapshot.docs });
+        $('#product').html(html);
+      });
+    } else {
+      var allproduct = db.collection("product").where('category', '==', name1);
+      allproduct.get().then(function (querySnapshot) {
+        var product_template = $('#product_template').html();
+        var html = ejs.render(product_template, { product: querySnapshot.docs });
+        $('#product').html(html);
+      });
+    }
+  }
+
+  //change
+
+
+  function changeTab(name) {
+    console.log(name)
+    document.getElementById('tabbar').setActiveTab(2);
+    localStorage.setItem('name', name);
+
+  }
+  //detail
+  function detail(pid) {
+    localStorage.setItem('id', pid);
+    myNavigator.pushPage('tab4.html')
+    showdetail()
+
+  }
+  //showdata
+  function showdetail() {
+    var code = localStorage.getItem("code");
+    if (code == null) {
+      var id = localStorage.getItem('id');
+    } else if (code != null) {
+      var id = localStorage.getItem("code");
+      
+     }
+    
+    db.collection("product").where("pid", "==", id).get()
+      .then(function (querySnapshot) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(querySnapshot.docs);
+        var detail_template = $('#detail_template').html();
+        var html = ejs.render(detail_template, { detail: querySnapshot.docs });
+        $('#detail').html(html);
+      })
+       localStorage.clear("code");
+   
+  }
+  //search
+  function search(search) {
+    const filterItems = (needle, heystack) => {
+      let query = needle.toLowerCase();
+      return heystack.filter(item => item.data().title.toLowerCase().indexOf(needle) >= 0);
+    }
+    var item = filterItems(search, data);
+    localStorage.setItem('items', item);
+    test(item);
+    document.getElementById('tabbar').setActiveTab(2);
+  }
+  const data = []
+  function tatol() {
+    console.log(search);
+    db.collection("product").get()
+      .then(function (querySnapshot) {
+        querySnapshot.docs.forEach(function (item) {
+          data.push(item)
+          console.log(data)
+        });
+      })
+  }
+  //test
+  function test(title) {
+    var product_template = $('#product_template').html();
+    var html = ejs.render(product_template, { product: title });
+    $('#product').html(html);
+  }
+  var dataCart = [];
+  function addtocart(add2cart) {
+    localStorage.clear('quentinTarantino');
+    localStorage.setItem('quentinTarantino', add2cart);
+    var retrievedData = localStorage.getItem("quentinTarantino");
+    console.log(retrievedData);
+    dataCart.push(retrievedData);
+    var modal = document.querySelector('ons-modal');
+    modal.show();
+    setTimeout(function () {
+      modal.hide();
+    }, 2000);
+  }
+  //????????? array ??????????????? firebase ?????????????????? template
+  //gteDate2cart
+  function getData2cart() {
+    document.getElementById('pro').innerHTML = ""
+    console.log('zeze', dataCart);
+    var testnum = 0;
+    dataCart.forEach(function (dataCart) {
+      var apr = db.collection("product").where("pid", "==", dataCart);
+      apr.get().then(function (querySnapshot) {
+        console.log(querySnapshot.docs)
+        var pro_template = $('#pro_template').html();
+        var html = ejs.render(pro_template, { cart: querySnapshot.docs, num: testnum });
+        console.log(html);
+        $('#pro').append(html);
+        testnum = testnum + 1;
+      })
+    })
+  }
+  //Delete 
+  function deleteb(i) {
+    console.log(i);
+    console.log(dataCart);
+    var remove = dataCart.splice(i, 1)
+    var modal = document.querySelector('#Delete');
+    modal.show();
+    setTimeout(function () {
+      modal.hide();
+    }, 2000);
+
+
+    getData2cart()
+  }
+  var priceitem = 0;
+  //Total 
+  function totalprice(price1) {
+    var price1 = parseInt(price1, 10)
+    console.log(price1);
+    priceitem = priceitem + price1;
+    $('#showprice').html("<p><b>&nbsp; Total Price is :฿ </b>" + priceitem + " </p>");
+  }
+  function deleteprice(price2) {
+    var price2 = parseInt(price2, 10)
+    console.log(price2);
+    priceitem = priceitem - price2;
+    $('#showprice').html("<p><b>&nbsp; Total Price is : </b>" + priceitem + " </p>");
+  }
+</script>
+
 </html>

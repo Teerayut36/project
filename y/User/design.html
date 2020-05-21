@@ -94,14 +94,7 @@
             <div class="content">
 
                 <div class="bgcolor" style="padding:15px;text-align:center">
-                    <!-- <div ><strong>เปลี่ยนสีเสื้อ</strong></div>
-                           <span class="white"></span>
-                           <span class="red"></span>
-                           <span class="green"></span>
-                           <span class="blue"></span>
-                           <span class="black"></span>
-                           
-                           </div> -->
+                   
 
                     <canvas id="mainscreen"></canvas>
 
@@ -113,19 +106,7 @@
 
 
 
-                    <!-- <div class="text">
-                                 <div><strong>เพิ่ม ตัวอักษร</strong></div>
-                                 <input type="text" class="txt"><input type="button" class="addtxt" name="เพิ่ม" value="เพิ่ม"> -->
-                    <!--     
-                            <div><strong>เปลี่ยนสีตัวอักษร</strong></div>
-                            <div class="txtcolor">
-                      <span class="white"></span>
-                           <span class="red"></span>
-                           <span class="green"></span>
-                           <span class="blue"></span>
-                           <span class="black"></span>
-                           </div>
-                        </div> -->
+                   
 
 
                     <div class="imageupload">
@@ -232,8 +213,8 @@
 
         fabric.Image.fromURL('images/แผ่น1.png', function (oImg) {
 
-            oImg.width = 360;
-            oImg.height = 200;
+            oImg.width = 380;
+            oImg.height = 220;
             oImg.set('selectable', false);
             screen.add(oImg);
             screen.centerObject(oImg);
@@ -252,25 +233,7 @@
         });
 
 
-        //    // loop ใส่สีให้ กับ ปุ่มเลือกสีเสื้อ
-        //  $.each( $(".bgcolor span") , function(  ) {
-
-
-        //       var className = $(this).attr('class');
-
-        //       $(".bgcolor ."+className).css("background",className);
-
-        //   });
-
-        //   // loop ใส่สีให้ กับ ปุ่มเลือกสีตัวอักษร
-        //  $.each( $(".txtcolor span") , function(  ) {
-
-
-        //       var className = $(this).attr('class');
-
-        //       $(".txtcolor ."+className).css("background",className);
-
-        //   });
+       
 
 
         // save รูปที่แต่งแล้ว
@@ -280,41 +243,7 @@
 
         });
 
-        // // event การเลือกสีเสื้อ
-        // $( ".bgcolor span" ).click(function() {
-
-
-        //       var color = $(this).attr('class'); 
-
-        //       bg = screen.item(0);
-
-        //       bg.filters.length = 0;
-        //       bg.filters.push(new fabric.Image.filters.Tint({
-        //       color: color,
-        //       opacity: .5
-        //       }));
-        //       bg.applyFilters(screen.renderAll.bind(screen));
-        //  }); 
-
-
-        //  // event การเลือกสีตัวอักษร
-        // $( ".txtcolor span" ).click(function() {
-
-
-        //       var color = $(this).attr('class'); 
-
-        //       var obtxt = screen.getActiveObject();
-
-
-        //          if(obtxt){
-        //       obtxt.setColor( color );
-        //       screen.renderAll();
-        //       }else{
-        //       alert("กรุณาเลือกตัวอักษรที่ต้องการเปลี่ยนสี");
-        //       }
-        //  }); 
-
-
+       
 
 
 

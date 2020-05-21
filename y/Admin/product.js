@@ -15,14 +15,13 @@ $(function () {
                      <div class="shop-item">
                    <img class="shop-item-image" src="${doc.data().photoURL}"> 
                    <br> 
+                   <br> 
                    <span class="shop-item-title">${doc.data().name}</span>
                    <br>
                 
                     <div class="shop-item-details">
                         <span class="shop-item-price">${doc.data().price}</span>
-                        <br>
-                    
-                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                       
                     </div>
                 </div>`
                    

@@ -1,34 +1,141 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-    </style>
-  </head>
-  <body data-rsssl=1>
-    <canvas id="myCanvas" width="578" height="200"></canvas>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="ejs.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <script src="cordova.js"></script>
     <script>
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-      var imageObj = new Image();
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAM8Oro8zBvD0US2xpEez2z4-l_DQHstIM",
+            authDomain: "shopee-1.firebaseapp.com",
+            databaseURL: "https://shopee-1.firebaseio.com",
+            projectId: "shopee-1",
+            storageBucket: "shopee-1.appspot.com",
+            messagingSenderId: "641889602156"
+        };
+        firebase.initializeApp(config);
+        // Initialize Cloud Firestore through Firebase
+        var db = firebase.firestore();
 
-      imageObj.onload = function() {
-        // draw cropped image
-        var sourceX = 150;
-        var sourceY = 0;
-        var sourceWidth = 150;
-        var sourceHeight = 150;
-        var destWidth = sourceWidth;
-        var destHeight = sourceHeight;
-        var destX = canvas.width / 2 - destWidth / 2;
-        var destY = canvas.height / 2 - destHeight / 2;
+        // Disable deprecated features
+        db.settings({
+            timestampsInSnapshots: true
+        });
 
-        context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
-      };
-      imageObj.src = 'https://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
     </script>
-  </body>
-</html>      
+    <style>
+        .toolbaricon {
+            padding-left: 5px;
+            padding-bottom: 5px;
+            padding-right: 5px;
+            color: 111111;
+        }
+    </style>
+</head>
+
+
+<body>
+    <ons-page>
+        <div style="text-align: center; margin-top: 30px;">
+            <!-- <p>
+                <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+            </p>
+            <p>
+                <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+            </p>
+            <p style="margin-top: 30px;">
+                <ons-button onclick="login()" style="background:#9370DB;">Sign in</ons-button>
+            </p> -->
+            <p style="margin-top: 30px;">
+                <ons-button onclick="google()" style="background:#FF3366;">Sign in google</ons-button>
+            </p>
+            <p style="margin-top: 30px;">
+                <ons-button onclick="facebook()" style="background:#0033FF;">Sign in facebook</ons-button>
+            </p>
+            <!-- <p>
+                <a href="register.html">sign uo for a new user</a>
+            </p> -->
+        </div>
+    </ons-page>
+    <script>
+        // var login = function () {
+        //     var username = document.getElementById('username').value;
+        //     var password = document.getElementById('password').value;
+        //     firebase.auth().signInWithEmailAndPassword(username, password).catch(function (error) {
+        //         // Handle Errors here.
+        //         var errorCode = error.code;
+        //         var errorMessage = error.message;
+        //         console.log(error.code + ':' + error.message);
+        //         ons.notification.alert('login feiled');
+        //         // ...
+        //     });
+
+        // };
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                //send user to home.html
+                // ...
+                window.location.href = 'html.html'
+            }
+        });
+
+        function google() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+            firebase.auth().signInWithRedirect(provider);
+            firebase.auth().getRedirectResult().then(function (result) {
+                if (result.credential) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = result.credential.accessToken;
+                    // ...
+                }
+                // The signed-in user info.
+                var user = result.user;
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+
+        }
+        function facebook() {
+            var provider = new firebase.auth.FacebookAuthProvider();
+           
+            firebase.auth().signInWithRedirect(provider);
+            firebase.auth().getRedirectResult().then(function (result) {
+                if (result.credential) {
+                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                    var token = result.credential.accessToken;
+                    // ...
+                }
+                // The signed-in user info.
+                var user = result.user;
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+        }
+    </script>
+
+</body>
+
+</html>

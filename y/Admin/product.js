@@ -20,7 +20,7 @@ $(function () {
                    <br>
                 
                     <div class="shop-item-details">
-                        <span class="shop-item-price">${doc.data().price}</span>
+                        <span class="shop-item-price">$${doc.data().price}</span>
                        
                     </div>
                 </div>`

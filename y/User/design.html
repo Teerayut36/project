@@ -35,15 +35,15 @@
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
-      apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
-      authDomain: "project-8cea8.firebaseapp.com",
-      databaseURL: "https://project-8cea8.firebaseio.com",
-      projectId: "project-8cea8",
-      storageBucket: "project-8cea8.appspot.com",
-      messagingSenderId: "915660167642",
-      appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
-      measurementId: "G-MDK8FVSGYM"
-    };
+            apiKey: "AIzaSyDutywZbJz62aT2SqSgkPWJU0_lU5OIsjE",
+            authDomain: "project-8cea8.firebaseapp.com",
+            databaseURL: "https://project-8cea8.firebaseio.com",
+            projectId: "project-8cea8",
+            storageBucket: "project-8cea8.appspot.com",
+            messagingSenderId: "915660167642",
+            appId: "1:915660167642:web:1e56f8dd9cbc511f4508e3",
+            measurementId: "G-MDK8FVSGYM"
+        };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -88,13 +88,13 @@
     </nav>
     <br>
     <br>
-   
+
     <header>
         <div class="desktop" style="margin: auto;">
             <div class="content">
 
                 <div class="bgcolor" style="padding:15px;text-align:center">
-                   
+
 
                     <canvas id="mainscreen"></canvas>
 
@@ -106,7 +106,7 @@
 
 
 
-                   
+
 
 
                     <div class="imageupload">
@@ -126,39 +126,39 @@
                     <header>
 
                 </div>
- <div class="form-group">
-                        <label for="formGroupExampleInput">ชื่อ</label>
-                        <input type="text" class="form-control" id="name" value="" placeholder="ชื่อ">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">นามสกุล</label>
-                        <input type="text" class="form-control" id="last" value="" placeholder="นามสกุล">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">เบอร์โทรศัพท์</label>
-                        <input type="text" class="form-control" id="tot" value="" placeholder="เบอร์โทรศัพท์">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">ID LINE</label>
-                        <input type="text" class="form-control" id="id" value="" placeholder="line">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">FACEBOOK</label>
-                        <input type="text" class="form-control" id="face" value="" placeholder="facebook">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">ที่อยู่</label>
-                        <textarea class="form-control" id="home" value="" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">ราคา : 990฿</label>
-                        
-                    </div>
-                    <button type="button" id="order"  class="btn">สั่งสินค้า</button>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">ชื่อ</label>
+                    <input type="text" class="form-control" id="name" value="" placeholder="ชื่อ">
                 </div>
-                
-            </header>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">นามสกุล</label>
+                    <input type="text" class="form-control" id="last" value="" placeholder="นามสกุล">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">เบอร์โทรศัพท์</label>
+                    <input type="text" class="form-control" id="tot" value="" placeholder="เบอร์โทรศัพท์">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">ID LINE</label>
+                    <input type="text" class="form-control" id="id" value="" placeholder="line">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">FACEBOOK</label>
+                    <input type="text" class="form-control" id="face" value="" placeholder="facebook">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">ที่อยู่</label>
+                    <textarea class="form-control" id="home" value="" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">ราคา : 990฿</label>
+
+                </div>
+                <button type="button" id="order" class="btn">สั่งสินค้า</button>
             </div>
+
+    </header>
+    </div>
     </header>
 
 </body>
@@ -196,6 +196,8 @@
         margin: 5px;
         border: 1px solid #000;
     }
+
+    
 </style>
 
 <script>
@@ -211,7 +213,7 @@
 
 
 
-        fabric.Image.fromURL('images/แผ่น1.png', function (oImg) {
+        fabric.Image.fromURL('images/แผ่น2.png', function (oImg) {
 
             oImg.width = 380;
             oImg.height = 220;
@@ -222,10 +224,7 @@
             bg = screen.item(0);
 
             bg.filters.length = 0;
-            bg.filters.push(new fabric.Image.filters.Tint({
-                color: 'white',
-                opacity: 0.6
-            }));
+          
             bg.applyFilters(screen.renderAll.bind(screen));
 
 
@@ -233,7 +232,7 @@
         });
 
 
-       
+
 
 
         // save รูปที่แต่งแล้ว
@@ -243,13 +242,13 @@
 
         });
 
-       
+
 
 
 
         // event ในเการเพิ่มรูปภาพ
         $("#imagebroswer").change(function () {
-
+            
             var e = $(this);
             var reader = new FileReader();
             reader.onload = function (event) {
@@ -262,19 +261,23 @@
 
 
                     var image = new fabric.Image(imgObj);
+                    image.width = 150;
+                    image.height = 150;
                     image.set({
                         angle: 0,
 
 
                     });
                     screen.centerObject(image);
+                    
                     screen.add(image);
                     screen.renderAll();
                 }
             }
-
+            
 
             reader.readAsDataURL(e[0].files[0]);
+            
 
         });
 

@@ -170,9 +170,7 @@ button {
   border-style: solid;
 }
 
-.shop-item-price:after {
-  content: '฿';
-}
+
 .shop-item-name{
   font-family: 'Athiti', sans-serif;
   font-size: 10px;

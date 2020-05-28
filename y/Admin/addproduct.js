@@ -1,17 +1,5 @@
 $(function () {
 
-    // var thumbnail;
-
-
-
-    // var fileButton = document.getElementById("fileButton")
-    // fileButton.addEventListener('change', function (e) {
-    //     var file = e.target.files[0];
-    //     //put img
-    //     var storageRef = firebase.storage().ref(file.name);
-    //     storageRef.put(file);
-    //     thumbnail = "https://firebasestorage.googleapis.com/v0/b/" + firebaseconfig["storageBucket"] + "/o/" + file.name + "?alt=media";
-    // });
 
     $("#addproduct").click(function () {
 
